@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withResponsiveProps errors throws an error when an invalid breakpoint is passed 1`] = `"Invalid breakpoint 'test', choose one of the defined breakpoints: xs, s, m, l, xl"`;
+
+exports[`withResponsiveProps methods groupMixinsByBreakpoint Adds mixins under the namespace \`noBreakpoint\` if the props is not an object 1`] = `
+Object {
+  "noBreakpoint": Object {
+    "testMethodTwo": 30,
+  },
+  "s": Object {
+    "testMethodOne": 30,
+  },
+  "xl": Object {
+    "testMethodOne": 1,
+  },
+  "xs": Object {
+    "testMethodOne": 10,
+  },
+}
+`;
+
+exports[`withResponsiveProps methods groupMixinsByBreakpoint Returns an empty object early, if prop value is nulll or undefined 1`] = `Object {}`;
+
+exports[`withResponsiveProps methods groupMixinsByBreakpoint retruns a map of mixins groupbed by it's breakpoint 1`] = `
+Object {
+  "l": Object {
+    "testMethodOne": 10,
+  },
+  "s": Object {
+    "testMethodOne": 10,
+    "testMethodTwo": 30,
+  },
+  "xl": Object {
+    "testMethodTwo": 1,
+  },
+  "xs": Object {
+    "testMethodTwo": 10,
+  },
+}
+`;
+
+exports[`withResponsiveProps methods invokeBreakpointMixins invokes it's mixin methods 1`] = `
+Array [
+  Array [
+    "green",
+  ],
+  Array [
+    "blue",
+  ],
+  Array [
+    "red",
+  ],
+]
+`;
+
+exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 1`] = `
+.c0 {
+  background: red;
+  width: 100px;
+}
+
+@media only screen and (min-width:320px) {
+  .c0 {
+    background: green;
+  }
+}
+
+@media only screen and (min-width:576px) {
+  .c0 {
+    background: blue;
+  }
+}
+
+@media only screen and (min-width:1200px) {
+  .c0 {
+    background: red;
+    padding: 5;
+  }
+}
+
+<WithTheme(responsiveProps)
+  bgMixin={
+    Object {
+      "s": "blue",
+      "xl": "red",
+      "xs": "green",
+    }
+  }
+  breakpoints={
+    Object {
+      "l": 992,
+      "m": 768,
+      "s": 576,
+      "xl": 1200,
+      "xs": 320,
+    }
+  }
+  paddingMixin={
+    Object {
+      "xl": Array [
+        5,
+        15,
+      ],
+    }
+  }
+>
+  <responsiveProps
+    bgMixin={
+      Object {
+        "s": "blue",
+        "xl": "red",
+        "xs": "green",
+      }
+    }
+    breakpoints={
+      Object {
+        "l": 992,
+        "m": 768,
+        "s": 576,
+        "xl": 1200,
+        "xs": 320,
+      }
+    }
+    paddingMixin={
+      Object {
+        "xl": Array [
+          5,
+          15,
+        ],
+      }
+    }
+    theme={
+      Object {
+        "responsiveProps": Object {
+          "breakpoint": undefined,
+        },
+      }
+    }
+  >
+    <styled.div
+      bgMixin={
+        Object {
+          "s": "blue",
+          "xl": "red",
+          "xs": "green",
+        }
+      }
+      breakpoints={
+        Object {
+          "l": 992,
+          "m": 768,
+          "s": 576,
+          "xl": 1200,
+          "xs": 320,
+        }
+      }
+      paddingMixin={
+        Object {
+          "xl": Array [
+            5,
+            15,
+          ],
+        }
+      }
+      responsiveProps={
+        Array [
+          Array [
+            "
+      ",
+            "@media only screen and (min-width: 320px)",
+            "{
+        ",
+            "
+            ",
+            [Function],
+            "
+          ",
+            "
+      }
+    ",
+          ],
+          Array [
+            "
+      ",
+            "@media only screen and (min-width: 576px)",
+            "{
+        ",
+            "
+            ",
+            [Function],
+            "
+          ",
+            "
+      }
+    ",
+          ],
+          Array [
+            "
+      ",
+            "@media only screen and (min-width: 1200px)",
+            "{
+        ",
+            "
+            ",
+            [Function],
+            [Function],
+            "
+          ",
+            "
+      }
+    ",
+          ],
+        ]
+      }
+      theme={
+        Object {
+          "responsiveProps": Object {
+            "breakpoint": undefined,
+          },
+        }
+      }
+    >
+      <div
+        className="c0"
+      />
+    </styled.div>
+  </responsiveProps>
+</WithTheme(responsiveProps)>
+`;
+
+exports[`withResponsiveProps methods withTheme overrides the breakpoint utils provided by theme 1`] = `
+Array [
+  Array [
+    100,
+  ],
+  Array [
+    200,
+  ],
+  Array [
+    300,
+  ],
+]
+`;

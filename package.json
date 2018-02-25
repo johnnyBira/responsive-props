@@ -1,0 +1,144 @@
+{
+  "name": "responsive-props",
+  "version": "0.0.0-development",
+  "description": "Responsive props for Styled Components",
+  "main": "lib/index.js",
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "npm-run-all --parallel build:*",
+    "build:umd": "webpack",
+    "build:es6": "babel src --out-dir lib --ignore spec.js --source-maps",
+    "commitmsg": "validate-commit-msg",
+    "cz-commit": "git-cz",
+    "report-coverage": "codecov",
+    "setup": "npm-run-all setup:*",
+    "setup:semantic-release": "semantic-release-cli setup",
+    "setup:commitizen": "commitizen init cz-conventional-changelog --save-dev --save-exact",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": "https://github.com/johnnyBira/responsive-props.git",
+  "keywords": [
+    "react",
+    "styled-components",
+    "utils",
+    "HOC",
+    "plugin",
+    "styles",
+    "css",
+    "css-in-js",
+    "inline-styles",
+    "breakpoint",
+    "breakpoints",
+    "media-query",
+    "media-queries",
+    "responsive",
+    "props"
+  ],
+  "author": "John Persson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonnyBira/responsive-props/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/test/test-bundler.js",
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "statements": 88,
+        "branches": 80,
+        "functions": 76,
+        "lines": 90
+      },
+      "coverageDirectory": "<rootDir>/coverage",
+      "coverageReporters": [
+        "lcov",
+        "html",
+        "text-summary"
+      ]
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleNameMapper": {
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|html)$": "<rootDir>/__mocks__/fileMock.js",
+      ".*\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
+  "homepage": "https://github.com/jonnyBira/responsive-props#readme",
+  "devDependencies": {
+    "@humblebee/styled-components-breakpoint": "^2.1.3",
+    "@storybook/addon-actions": "^3.3.14",
+    "@storybook/addon-backgrounds": "^3.3.14",
+    "@storybook/addon-links": "^3.3.14",
+    "@storybook/addon-options": "^3.3.14",
+    "@storybook/react": "^3.3.14",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "codecov": "^2.3.1",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^21.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "husky": "^0.14.3",
+    "jest": "^22.1.4",
+    "jest-cli": "^22.1.4",
+    "jest-enzyme": "^4.0.2",
+    "jest-styled-components": "next",
+    "jsdom": "^9.12.0",
+    "mime": "^2.2.0",
+    "npm-run-all": "^4.1.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
+    "rimraf": "^2.6.2",
+    "semantic-release": "^8.2.0",
+    "semantic-release-cli": "^3.0.3",
+    "styled-components": "^3.1.6",
+    "validate-commit-msg": "^2.14.0",
+    "webpack": "^3.8.1"
+  },
+  "peerDependencies": {
+    "@humblebee/styled-components-breakpoint": ">= 2.1.0 < 3.0.0",
+    "react": ">= 0.14.0 < 17.0.0-0",
+    "styled-components": ">= 2.0.0 < 4.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "scope": {
+        "required": true,
+        "validate": true,
+        "multiple": true
+      }
+    }
+  },
+  "dependencies": {
+    "isobject": "^3.0.1"
+  }
+}

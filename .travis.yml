@@ -1,0 +1,24 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
+before_install:
+  - if [[ `npm -v` != 5.4* ]]; then npm i -g npm@5.4; fi
+  - nvm --version
+node_js:
+  - '8'
+before_script:
+  - npm prune
+  - npm install
+script:
+  - npm run test
+  - npm run build
+after_success:
+  - npm run test:coverage
+  - npm run semantic-release
+  - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
