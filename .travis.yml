@@ -5,7 +5,6 @@ cache:
 notifications:
   email: false
 before_install:
-  - if [[ `npm -v` != 5.4* ]]; then npm i -g npm@5.4; fi
   - nvm --version
 node_js:
   - '8'
