@@ -16,8 +16,8 @@ script:
   - yarn test
   - yarn build
 after_success:
-  - yarn test:coverage
-  - yarn travis-deploy-once "npm run semantic-release"
+  - npm test:coverage
+  - npm travis-deploy-once "npm run semantic-release"
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
 branches:
   except:
