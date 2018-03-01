@@ -11,8 +11,8 @@ before_install:
 node_js:
   - '8'
 before_script:
-  - npm prune
-  - npm install
+  - sudo npm prune
+  - sudo npm install
 script:
   - npm run test
   - npm run build
