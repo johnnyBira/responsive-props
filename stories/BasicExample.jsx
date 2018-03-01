@@ -8,14 +8,6 @@ const StyledComponent = styled.div`
   background: palevioletred;
   margin 0 auto;
 
-  ${({ responsiveProps }) => responsiveProps}
-`;
-
-const background = val => `
-  background: ${val};
-`;
-
-const text = val => `
   position: relative;
   font-family: helvetica;
   font-wieght: bold;
@@ -25,12 +17,24 @@ const text = val => `
   font-size: 12px;
 
   &:before {
-    content: "${val}";
+    content: "";
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  ${({ responsiveProps }) => responsiveProps}
+`;
+
+const background = val => `
+  background: ${val};
+`;
+
+const text = val => `
+  &:before {
+    content: "${val}";
   }
 `;
 
