@@ -14,12 +14,13 @@
     "setup": "npm-run-all setup:*",
     "setup:semantic-release": "semantic-release-cli setup",
     "setup:commitizen": "commitizen init cz-conventional-changelog --save-dev --save-exact",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "repository": "https://github.com/johnnyBira/responsive-props.git",
   "keywords": [
@@ -119,7 +120,8 @@
     "semantic-release": "^12.4.1",
     "semantic-release-cli": "^3.6.3",
     "styled-components": "^3.1.6",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "travis-deploy-once": "^4.3.4"
   },
   "peerDependencies": {
     "@humblebee/styled-components-breakpoint": ">= 2.1.0 < 3.0.0",
