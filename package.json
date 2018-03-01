@@ -116,8 +116,8 @@
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-release": "^8.2.0",
-    "semantic-release-cli": "^3.0.3",
+    "semantic-release": "^12.4.1",
+    "semantic-release-cli": "^3.6.3",
     "styled-components": "^3.1.6",
     "webpack": "^3.8.1"
   },
