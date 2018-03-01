@@ -8,7 +8,7 @@
     "build": "npm-run-all --parallel build:*",
     "build:umd": "webpack",
     "build:es6": "babel src --out-dir lib --ignore spec.js --source-maps",
-    "commitmsg": "validate-commit-msg",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "cz-commit": "git-cz",
     "report-coverage": "codecov",
     "setup": "npm-run-all setup:*",
@@ -76,6 +76,8 @@
   },
   "homepage": "https://github.com/jonnyBira/responsive-props#readme",
   "devDependencies": {
+    "@commitlint/cli": "^6.1.2",
+    "@commitlint/config-conventional": "^6.1.2",
     "@humblebee/styled-components-breakpoint": "^2.1.3",
     "@storybook/addon-actions": "^3.3.14",
     "@storybook/addon-backgrounds": "^3.3.14",
@@ -108,6 +110,7 @@
     "jest-enzyme": "^4.0.2",
     "jest-styled-components": "next",
     "jsdom": "^9.12.0",
+    "mime": "^2.2.0",
     "npm-run-all": "^4.1.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
@@ -117,7 +120,6 @@
     "semantic-release": "^8.2.0",
     "semantic-release-cli": "^3.0.3",
     "styled-components": "^3.1.6",
-    "validate-commit-msg": "^2.14.0",
     "webpack": "^3.8.1"
   },
   "peerDependencies": {
@@ -138,6 +140,7 @@
     }
   },
   "dependencies": {
+    "commitlint": "^6.1.2",
     "isobject": "^3.0.1"
   }
 }
