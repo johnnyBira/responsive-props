@@ -2,17 +2,17 @@ language: node_js
 cache:
   directories:
     - node_modules
+    - ~/.npm
 notifications:
   email: false
 before_install:
-  - '[ "${TRAVIS_NODE_VERSION}" != "0.8" ] || npm install -g npm@1.4.28'
-  - npm install -g npm@latest
+  - npm update -g npm
   - nvm --version
 node_js:
   - '8'
 before_script:
-  - sudo npm prune
-  - sudo npm install
+  - npm prune
+  - npm install
 script:
   - npm run test
   - npm run build
