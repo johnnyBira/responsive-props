@@ -5,6 +5,7 @@ cache:
 notifications:
   email: false
 before_install:
+  - npm update -g npm
   - nvm --version
 node_js:
   - '8'
