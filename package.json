@@ -125,7 +125,6 @@
     "webpack": "^3.8.1"
   },
   "peerDependencies": {
-    "@humblebee/styled-components-breakpoint": ">= 2.1.0 < 3.0.0",
     "react": ">= 0.14.0 < 17.0.0-0",
     "styled-components": ">= 2.0.0 < 4.0.0"
   },
