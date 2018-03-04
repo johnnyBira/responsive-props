@@ -52,6 +52,10 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/test/test-bundler.js",
     "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
     "coverageThreshold": {
       "global": {
         "statements": 88,
