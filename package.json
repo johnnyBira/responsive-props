@@ -79,7 +79,6 @@
   "devDependencies": {
     "@commitlint/cli": "^6.1.2",
     "@commitlint/config-conventional": "^6.1.2",
-    "@humblebee/styled-components-breakpoint": "^2.1.3",
     "@storybook/addon-actions": "^3.3.14",
     "@storybook/addon-backgrounds": "^3.3.14",
     "@storybook/addon-links": "^3.3.14",
@@ -141,6 +140,7 @@
     }
   },
   "dependencies": {
+    "@humblebee/styled-components-breakpoint": "^2.1.3",
     "isobject": "^3.0.1"
   }
 }
