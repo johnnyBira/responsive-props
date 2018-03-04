@@ -224,5 +224,14 @@ describe('withResponsiveProps', () => {
       spyOn(console, 'error');
       expect(Wrapper).toThrowErrorMatchingSnapshot();
     });
+
+    it('throws an error when an breakpoints are neither present in theme or prop', () => {
+      const Wrapper = () => (
+        renderer.create(<WrappedComponent testMethodOne={{ test: 10 }} />)
+      );
+      // spyOn suppresses unwanted react error
+      spyOn(console, 'error');
+      expect(Wrapper).toThrowErrorMatchingSnapshot();
+    });
   });
 });
