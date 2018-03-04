@@ -20,7 +20,7 @@ const breakpoint = styledBreakpoint(bps);
 
 const theme = {
   responsiveProps: {
-    breakpoint: bps,
+    breakpoints: bps,
   },
 };
 
