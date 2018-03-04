@@ -134,7 +134,11 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
     static getBreakpointUtils(theme, breakpoints) {
       if (typeof breakpoints !== 'undefined') {
         return styledBreakpoint(breakpoints);
-      } else if (typeof theme.responsiveProps.breakpoints !== 'undefined') {
+      } else if (
+        typeof theme !== 'undefined' &&
+        typeof theme.responsiveProps !== 'undefined' &&
+        typeof theme.responsiveProps.breakpoints !== 'undefined'
+      ) {
         return styledBreakpoint(theme.responsiveProps.breakpoints);
       }
       throw new Error('Breakpoints need to be provided either through the prop `breakpoints`, or be present under the theme namesapce `responsiveProps.breakpoints` in a `theme` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-the-breakpoints');
