@@ -8,6 +8,7 @@
     "build": "npm-run-all --parallel build:*",
     "build:umd": "webpack",
     "build:es6": "babel src --out-dir lib --ignore spec.js --source-maps",
+    "build:storybook": "build-storybook",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "cz-commit": "git-cz",
     "report-coverage": "codecov",
@@ -19,7 +20,6 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "travis-deploy-once": "travis-deploy-once"
   },
   "repository": "https://github.com/johnnyBira/responsive-props.git",
@@ -85,6 +85,7 @@
     "@commitlint/config-conventional": "^6.1.2",
     "@storybook/addon-actions": "^3.3.14",
     "@storybook/addon-backgrounds": "^3.3.14",
+    "@storybook/addon-info": "^3.3.14",
     "@storybook/addon-links": "^3.3.14",
     "@storybook/addon-options": "^3.3.14",
     "@storybook/react": "^3.3.14",
