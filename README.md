@@ -7,7 +7,7 @@
 ## Responsive Props 💅
 Responsive props for [Styled Components](https://www.styled-components.com/).
 
-![alt text](https://raw.githubusercontent.com/johnnyBira/responsive-props/master/docs/images/example.gif "Example")
+![alt text](https://raw.githubusercontent.com/johnnyBira/responsive-props/master/docs/images/demoExample.gif "Demo Exmaple")
 
 `responsive-props` enhances a [styled component](https://www.styled-components.com/) with a responsive API to handle styling based on any number of media queries.
 
@@ -27,8 +27,6 @@ A common example of this is a column in a grid, where a column can have a differ
   <Column span={6} />
 </Row>
 ```
-
-The above example is taken from [Styled Flexbox Grid](https://www.npmjs.com/package/styled-flexbox-grid), which uses `responsive-props`.
 
 #### Installation
 
@@ -87,6 +85,8 @@ export default Example;
 
 The above component `WrappedStyledComponent`, will result in a div in the shaped of a square, with different background colors depending on what media query is matching.
 
+![alt text](https://raw.githubusercontent.com/johnnyBira/responsive-props/master/docs/images/basicExample.gif "Basic Exmaple")
+
 Notice how different breakpoint are targeted inside of the `background` prop of `WrappedStyledComponent`. The value for each breakpoint ('#002635', '#013440' and '#AB1A25') will be passed as the `bg` parameter of the `background` mixin, and generate corresponding styled for each media query.
 
 Also notice that the name of the prop `background`, matches that of the key `background` in the object of mixins we passed to the `withResponsiveProps` HOC.
@@ -106,7 +106,7 @@ const breakpoints = { xs: 320, sm: 576, md: 768, lg: 992, xl: 1200 };
 // WrappedStyledComponent can now be used in the following way
 const Example = () => (
   <WrappedStyledComponent
-    background={{ sm: '#002635', md: '#013440', lg: '#AB1A25' }}
+    background={{ sm: 'papayawhip', md: 'palevioletred', lg: '#AB1A25' }}
     breakpoints={breakpoints}
   />
 );
@@ -114,7 +114,8 @@ const Example = () => (
 
 ## Register breakpoints
 
-There are two ways to setup the breakpoints for a components enhanced by `responsive-props`.
+There are two ways to register the breakpoints for a components enhanced by `responsive-props`.
+
 The first (which has already been demonstrated in the [Basic Example][#basic-example]) is to pass to pass an object of breakpoints to the enhanced component via the `breakpoints` prop. The other more convenient way is to register the breakpoints inside a theme of the `styled-components` [ThemeProvider](https://www.styled-components.com/docs/advanced#theming).
 
 ### Via `<ThemeProvider />` (recommended)
@@ -157,25 +158,26 @@ If your application doesn't make use of `ThemeProvider` (or you would like to ov
 
 ## API
 
-### Responsive props
+### Responsive props (media queries)
 
-  To target a specific breakpoint an object of breakpoints is passed as a prop. The keys (`s`, `m`, and `l`) are the breakpoints to target, and the values ('#002635', '#013440', '#AB1A25') is the parameter that will be passed to the mixin/function responsible for generating the styles.
+  To target a specific breakpoint an object of breakpoints is passed as the prop. The keys (`s`, `m`, and `l`) are the breakpoints to target. The values ('#002635', '#013440', '#AB1A25') are parameter that will be passed to a mixin/function namned `background`, responsible for generating styles for the specified breakpoints.
 
 ```javascript
 <WrappedStyledComponent background={{ s: '#002635', m: '#013440', l: '#AB1A25' }} />
 ```
 
-### Without media queries
+### Single value (without media queries)
 
-If a style should be applied without media queries it is possible to pass only a single value, instead of an object of breakpoints.
+If a style should be applied without media queries (i.e. independent of the bowser/viewport width) it is possible to only pass a single value, instead of an object of breakpoints.
 
 ```javascript
 <WrappedStyledComponent background="#002635" />
 ```
+This will result in a background color of `#002635` for all viewports.
 
 ### Mixins with multiple parameters
 
-If a mixin accept more than one parameter it is possible to pass the parameter for a give breakpoint in the form on an array. In the example bellow the `padding` mixin takes two paramters for top and bottom padding.
+If a mixin accept more than one parameter it is possible to pass the parameter for a give breakpoint in the form on an array. In the example bellow the `padding` mixin takes two parameters for top and bottom padding.
 
 ```javascript
 <WrappedStyledComponent padding={{ s: ['2rem', '1rem'], m: ['3rem', '2rem'] }}
