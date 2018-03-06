@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`withResponsiveProps errors throws an error when an breakpoints are neither present in theme or prop 1`] = `"Breakpoints need to be provided either through the prop \`breakpoints\`, or be present under the theme namesapce \`responsiveProps.breakpoints\` in a \`theme\` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-the-breakpoints"`;
+
 exports[`withResponsiveProps errors throws an error when an invalid breakpoint is passed 1`] = `"Invalid breakpoint 'test', choose one of the defined breakpoints: xs, s, m, l, xl"`;
 
 exports[`withResponsiveProps methods groupMixinsByBreakpoint Adds mixins under the namespace \`noBreakpoint\` if the props is not an object 1`] = `

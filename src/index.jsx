@@ -125,7 +125,7 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
     }
 
     /**
-     * Get's the breakpoint util either from props or theme
+     * Get's the breakpoints either from props or theme
      * Throws an error if neither is present
      * @method groupMixinsByBreakpoint
      * @param {*} props - Props of the wrapped component.
@@ -134,10 +134,14 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
     static getBreakpointUtils(theme, breakpoints) {
       if (typeof breakpoints !== 'undefined') {
         return styledBreakpoint(breakpoints);
-      } else if (typeof theme.responsiveProps.breakpoint !== 'undefined') {
-        return styledBreakpoint(theme.responsiveProps.breakpoint);
+      } else if (
+        typeof theme !== 'undefined' &&
+        typeof theme.responsiveProps !== 'undefined' &&
+        typeof theme.responsiveProps.breakpoints !== 'undefined'
+      ) {
+        return styledBreakpoint(theme.responsiveProps.breakpoints);
       }
-      throw new Error('Breakpoint utils need to be provided either as the prop `breakpoints`, or be present under the theme namesapce `responsiveProps.breakpoint` the `theme` of a ThemeProvider');
+      throw new Error('Breakpoints need to be provided either through the prop `breakpoints`, or be present under the theme namesapce `responsiveProps.breakpoints` in a `theme` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-the-breakpoints');
     }
 
     render() {
@@ -157,5 +161,5 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
   return withTheme(responsiveProps);
 };
 
-// withResponsivePropsHoc.displayName = 'Row';
+withResponsiveProps.displayName = 'responsiveProps';
 export default withResponsiveProps;

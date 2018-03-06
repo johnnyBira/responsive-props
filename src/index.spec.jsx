@@ -20,7 +20,7 @@ const breakpoint = styledBreakpoint(bps);
 
 const theme = {
   responsiveProps: {
-    breakpoint: bps,
+    breakpoints: bps,
   },
 };
 
@@ -219,6 +219,15 @@ describe('withResponsiveProps', () => {
     it('throws an error when an invalid breakpoint is passed', () => {
       const Wrapper = () => (
         renderer.create(<WrappedComponent testMethodOne={{ test: 10 }} breakpoints={bps} />)
+      );
+      // spyOn suppresses unwanted react error
+      spyOn(console, 'error');
+      expect(Wrapper).toThrowErrorMatchingSnapshot();
+    });
+
+    it('throws an error when an breakpoints are neither present in theme or prop', () => {
+      const Wrapper = () => (
+        renderer.create(<WrappedComponent testMethodOne={{ test: 10 }} />)
       );
       // spyOn suppresses unwanted react error
       spyOn(console, 'error');
