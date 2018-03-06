@@ -125,7 +125,7 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
     }
 
     /**
-     * Get's the breakpoint util either from props or theme
+     * Get's the breakpoints either from props or theme
      * Throws an error if neither is present
      * @method groupMixinsByBreakpoint
      * @param {*} props - Props of the wrapped component.
@@ -161,5 +161,5 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
   return withTheme(responsiveProps);
 };
 
-// withResponsivePropsHoc.displayName = 'Row';
+withResponsiveProps.displayName = 'responsiveProps';
 export default withResponsiveProps;
