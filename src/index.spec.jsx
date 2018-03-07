@@ -204,6 +204,56 @@ describe('withResponsiveProps', () => {
         expect(testMethod.mock.calls).toMatchSnapshot();
       });
     });
+
+    describe('filterMixinsFromProps', () => {
+      const testMethodOne = jest.fn();
+      const testMethodTwo = jest.fn();
+      // const styleTestMethod = args => css`
+      //   mock: ${args};
+      //   ${testMethod(args)};
+      // `;
+      const mixins = {
+        testMethodOne,
+        testMethodTwo,
+      };
+      const WrappedComponent = withResponsivePropsHoc(TestWrapped, { mixins });
+
+      const wrapper = mount(<ThemeProvider theme={theme}>
+        <WrappedComponent
+          breakpoints={{
+            small: 100,
+            medium: 200,
+            large: 300,
+          }}
+          testMethodOne={{
+            small: 100, medium: 200, large: 300,
+          }}
+          testMethodTwo={{
+            small: 100, medium: 200, large: 300,
+          }}
+          testPropOne="Test one"
+          testPropTwo="Test two"
+        />
+      </ThemeProvider>);
+      const instance = wrapper.find(WrappedComponent).instance();
+      const fliteredProps = WrappedComponent.filterMixinsFromProps(instance.props, Object.keys(mixins));
+
+      it('removes mixins properties from the props object', () => {
+
+        // Check unfitered props
+        expect(instance.props).toHaveProperty('testMethodOne');
+        expect(instance.props).toHaveProperty('testMethodTwo');
+        // Check filtered props
+        expect(fliteredProps).not.toHaveProperty('testMethodOne');
+        expect(fliteredProps).not.toHaveProperty('testMethodTwo');
+        expect(fliteredProps).toMatchSnapshot();
+      });
+
+      it('keeps props the are not mixins', () => {
+        expect(instance.props).toHaveProperty('testPropOne');
+        expect(instance.props).toHaveProperty('testPropTwo');
+      });
+    });
   });
 
   describe('errors', () => {

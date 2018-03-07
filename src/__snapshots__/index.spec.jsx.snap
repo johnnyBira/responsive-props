@@ -1,8 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`withResponsiveProps errors throws an error when an breakpoints are neither present in theme or prop 1`] = `"Breakpoints need to be provided either through the prop \`breakpoints\`, or be present under the theme namesapce \`responsiveProps.breakpoints\` in a \`theme\` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-the-breakpoints"`;
+exports[`withResponsiveProps errors throws an error when an breakpoints are neither present in theme or prop 1`] = `"Breakpoints need to be provided either through the prop \`breakpoints\`, or be present under the theme namesapce \`responsiveProps.breakpoints\` in a \`theme\` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-breakpoints"`;
 
 exports[`withResponsiveProps errors throws an error when an invalid breakpoint is passed 1`] = `"Invalid breakpoint 'test', choose one of the defined breakpoints: xs, s, m, l, xl"`;
+
+exports[`withResponsiveProps methods filterMixinsFromProps removes mixins properties from the props object 1`] = `
+Object {
+  "breakpoints": Object {
+    "large": 300,
+    "medium": 200,
+    "small": 100,
+  },
+  "testPropOne": "Test one",
+  "testPropTwo": "Test two",
+}
+`;
 
 exports[`withResponsiveProps methods groupMixinsByBreakpoint Adds mixins under the namespace \`noBreakpoint\` if the props is not an object 1`] = `
 Object {
@@ -131,22 +143,8 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
         ],
       }
     }
-    theme={
-      Object {
-        "responsiveProps": Object {
-          "breakpoint": undefined,
-        },
-      }
-    }
   >
     <styled.div
-      bgMixin={
-        Object {
-          "s": "blue",
-          "xl": "red",
-          "xs": "green",
-        }
-      }
       breakpoints={
         Object {
           "l": 992,
@@ -154,14 +152,6 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
           "s": 576,
           "xl": 1200,
           "xs": 320,
-        }
-      }
-      paddingMixin={
-        Object {
-          "xl": Array [
-            5,
-            15,
-          ],
         }
       }
       responsiveProps={
@@ -213,13 +203,6 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
     ",
           ],
         ]
-      }
-      theme={
-        Object {
-          "responsiveProps": Object {
-            "breakpoint": undefined,
-          },
-        }
       }
     >
       <div

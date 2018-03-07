@@ -28,6 +28,10 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
       theme: proptypes.shape({}),
     };
 
+    static defaultProps = {
+      theme: {}
+    }
+
     /**
      * Determains if an arguemnt is in the form of a breakpoint map or not.
      * @method isBreakpointArg
@@ -141,19 +145,43 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
       ) {
         return styledBreakpoint(theme.responsiveProps.breakpoints);
       }
-      throw new Error('Breakpoints need to be provided either through the prop `breakpoints`, or be present under the theme namesapce `responsiveProps.breakpoints` in a `theme` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-the-breakpoints');
+      throw new Error('Breakpoints need to be provided either through the prop `breakpoints`, or be present under the theme namesapce `responsiveProps.breakpoints` in a `theme` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-breakpoints');
+    }
+
+    /**
+     * Removes mixins properties from the props object
+     * @method filterMixinsFromProps
+     * @param {*} props - Props of the wrapped component.
+     * @param string[] mixinList - Array of string/keys of the registtred mixins
+     * @return {object} - Object filtred out props
+     */
+    static filterMixinsFromProps(props, mixinList) {
+      return (
+        Object.keys(props).reduce((acc, key) => {
+          if (mixinList.indexOf(key) === -1) {
+            acc[key] = props[key];
+          }
+          return acc;
+        }, {})
+      );
     }
 
     render() {
-      const { breakpoints, theme, ...props } = this.props;
+      const { breakpoints, theme, nodeRef, ...props } = this.props;
       const breakpointUtils = responsiveProps.getBreakpointUtils(theme, breakpoints);
       const groupedMethods = responsiveProps.groupMixinsByBreakpoint(props, breakpointUtils);
       const invokedMethods = responsiveProps.invokeBreakpointMixins(
         groupedMethods,
         breakpointUtils,
       );
+      const fliteredProps = responsiveProps.filterMixinsFromProps(this.props, Object.keys(mixins));
+
       return (
-        <WrappedComponent theme={theme} {...this.props} responsiveProps={invokedMethods} />
+        <WrappedComponent
+          theme={theme}
+          {...fliteredProps}
+          responsiveProps={invokedMethods}
+        />
       );
     }
   }
