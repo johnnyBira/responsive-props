@@ -1,11 +1,9 @@
 {
   "extends": [
     "airbnb",
-    "plugin:flowtype/recommended"
   ],
   "plugins": [
     "jest",
-    "flowtype"
   ],
   "settings": {
     "import/extensions": [".js", ".jsx", ".scss"],

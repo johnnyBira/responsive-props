@@ -6,9 +6,9 @@
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "npm-run-all --parallel build:*",
-    "build:umd": "webpack",
     "build:es6": "babel src --out-dir lib --ignore spec.js --source-maps",
-    "build:storybook": "build-storybook",
+    "build-umd": "webpack",
+    "build-storybook": "build-storybook",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "cz-commit": "git-cz",
     "report-coverage": "codecov",
@@ -43,7 +43,7 @@
   "author": "John Persson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jonnyBira/responsive-props/issues"
+    "url": "https://github.com/johnnyBira/responsive-props/issues"
   },
   "files": [
     "dist",
