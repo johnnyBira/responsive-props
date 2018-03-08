@@ -143,6 +143,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
         ],
       }
     }
+    theme={Object {}}
   >
     <styled.div
       breakpoints={
@@ -204,6 +205,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
           ],
         ]
       }
+      theme={Object {}}
     >
       <div
         className="c0"
@@ -225,4 +227,10 @@ Array [
     300,
   ],
 ]
+`;
+
+exports[`withResponsiveProps nodeRef nodeRef return the underlaying DOM element of the wrapped styled-comoonent 1`] = `
+<div
+  class="sc-bdVaJa juxaEn"
+/>
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
 import styled, { css, withTheme, ThemeProvider } from 'styled-components';
 import renderer from 'react-test-renderer';
@@ -253,6 +253,33 @@ describe('withResponsiveProps', () => {
         expect(instance.props).toHaveProperty('testPropOne');
         expect(instance.props).toHaveProperty('testPropTwo');
       });
+    });
+  });
+
+  describe('nodeRef', () => {
+    const WrappedComponent = withResponsivePropsHoc(TestWrapped, {});
+    let innerRef;
+
+    class Test extends Component {
+      render() {
+        return (
+          <ThemeProvider theme={theme}>
+            <WrappedComponent
+              nodeRef={(ref) => {
+                innerRef = ref;
+                this.nodeReference = ref;
+              }}
+            />
+          </ThemeProvider>
+        );
+      }
+    }
+    const wrapper = mount(<Test />);
+
+    const instance = wrapper.find(WrappedComponent).instance();
+    it('nodeRef return the underlaying DOM element of the wrapped styled-comoonent', () => {
+      expect(innerRef).toMatchSnapshot();
+      expect(instance.props).toHaveProperty('nodeRef');
     });
   });
 

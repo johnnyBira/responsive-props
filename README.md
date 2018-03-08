@@ -116,7 +116,7 @@ const Example = () => (
 
 There are two ways to register the breakpoints for a components enhanced by `responsive-props`.
 
-The first (which has already been demonstrated in the [Basic Example][#basic-example]) is to pass to pass an object of breakpoints to the enhanced component via the `breakpoints` prop. The other more convenient way is to register the breakpoints inside a theme of the `styled-components` [ThemeProvider](https://www.styled-components.com/docs/advanced#theming).
+The first (which has already been demonstrated in the  [Basic Example](#basic-example)  is to pass to pass an object of breakpoints to the enhanced component via the `breakpoints` prop. The other more convenient way is to register the breakpoints inside a theme of the `styled-components` [ThemeProvider](https://www.styled-components.com/docs/advanced#theming).
 
 ### Via `<ThemeProvider />` (recommended)
 
@@ -204,4 +204,24 @@ const Example = () => (
   />
 );
 ```
+
+### Ref / innerRef
+
+To get the underlaying DOM element you pass a function to the `nodeRef` prop. The returned node is the equivalent of the `innerRef` prop of `styled-componets`.
+A future release might fix this and replace the `nodeRef` prop with `innerRef`.
+
+Only works for stateful components.
+
+// WrappedStyledComponent can now be used in the following way
+class Example extends Component {
+  render() {
+    return (
+        <WrappedStyledComponent
+          nodeRef={(ref) => this.nodeRef = ref}
+        />
+      )
+  }
+};
+```
+
 ---

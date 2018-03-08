@@ -180,6 +180,7 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
         <WrappedComponent
           theme={theme}
           {...fliteredProps}
+          innerRef={nodeRef}
           responsiveProps={invokedMethods}
         />
       );
