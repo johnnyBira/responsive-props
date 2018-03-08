@@ -212,8 +212,8 @@ A future release might fix this and replace the `nodeRef` prop with `innerRef`.
 
 Only works for stateful components.
 
-// WrappedStyledComponent can now be used in the following way
-class Example extends Component {
+```javascript
+class Example extends React.Component {
   render() {
     return (
         <WrappedStyledComponent
