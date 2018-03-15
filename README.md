@@ -28,6 +28,8 @@ A common example of this is a column in a grid, where a column can have a differ
 </Row>
 ```
 
+The above example is take from the [Styled Flexbox Grid](https://github.com/johnnyBira/styled-flexbox-grid) library.
+
 #### Installation
 
 ```sh
