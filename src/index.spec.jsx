@@ -239,7 +239,6 @@ describe('withResponsiveProps', () => {
       const fliteredProps = WrappedComponent.filterMixinsFromProps(instance.props, Object.keys(mixins));
 
       it('removes mixins properties from the props object', () => {
-
         // Check unfitered props
         expect(instance.props).toHaveProperty('testMethodOne');
         expect(instance.props).toHaveProperty('testMethodTwo');
@@ -258,28 +257,38 @@ describe('withResponsiveProps', () => {
 
   describe('nodeRef', () => {
     const WrappedComponent = withResponsivePropsHoc(TestWrapped, {});
+    let nodeRef;
     let innerRef;
 
     class Test extends Component {
       render() {
         return (
           <ThemeProvider theme={theme}>
-            <WrappedComponent
-              nodeRef={(ref) => {
-                innerRef = ref;
-                this.nodeReference = ref;
-              }}
-            />
+            <WrappedComponent {...this.props} />
           </ThemeProvider>
         );
       }
     }
-    const wrapper = mount(<Test />);
+    mount(<Test
+      nodeRef={(ref) => {
+        nodeRef = ref;
+      }}
+    />);
 
-    const instance = wrapper.find(WrappedComponent).instance();
-    it('nodeRef return the underlaying DOM element of the wrapped styled-comoonent', () => {
+    // The `nodeRef` prop is keept for legacy reasons. Consider removal at a later release
+    it('returns the underlaying DOM element of the wrapped styled-comoonent via `nodeRef`', () => {
+      expect(nodeRef).toMatchSnapshot();
+    });
+
+    mount(<Test
+      innerRef={(ref) => {
+        innerRef = ref;
+      }}
+    />);
+
+    // const instanceOne = wrapperOne.find(WrappedComponent).instance();
+    it('returns the underlaying DOM element of the wrapped styled-comoonent via `innerRef`', () => {
       expect(innerRef).toMatchSnapshot();
-      expect(instance.props).toHaveProperty('nodeRef');
     });
   });
 

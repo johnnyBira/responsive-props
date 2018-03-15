@@ -167,7 +167,8 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
     }
 
     render() {
-      const { breakpoints, theme, nodeRef, ...props } = this.props;
+      // The prop `nodeRef is keept for legacy reasons`. Consider removal in the future
+      const { breakpoints, theme, innerRef, nodeRef, ...props } = this.props;
       const breakpointUtils = responsiveProps.getBreakpointUtils(theme, breakpoints);
       const groupedMethods = responsiveProps.groupMixinsByBreakpoint(props, breakpointUtils);
       const invokedMethods = responsiveProps.invokeBreakpointMixins(
@@ -180,11 +181,17 @@ const withResponsiveProps = (WrappedComponent, mixins = {}) => {
         <WrappedComponent
           theme={theme}
           {...fliteredProps}
-          innerRef={nodeRef}
+          innerRef={innerRef || nodeRef}
           responsiveProps={invokedMethods}
         />
       );
     }
+  }
+
+  // Makes responsiveProps pass the as a styledComponent (styled-components/utils/isStyledComponent)
+  // This allow passing of the prop `innerRef`, to components wrapped with the `withTheme` HOC.
+  if (typeof WrappedComponent.styledComponentId === 'string') {
+    responsiveProps.styledComponentId = WrappedComponent.styledComponentId;
   }
 
   return withTheme(responsiveProps);
