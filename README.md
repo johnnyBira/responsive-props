@@ -204,24 +204,4 @@ const Example = () => (
   />
 );
 ```
-
-### Ref / innerRef
-
-To get the underlaying DOM element you pass a function to the `nodeRef` prop. The returned node is the equivalent of the `innerRef` prop of `styled-componets`.
-A future release might fix this and replace the `nodeRef` prop with `innerRef`.
-
-Only works for stateful components.
-
-```javascript
-class Example extends React.Component {
-  render() {
-    return (
-        <WrappedStyledComponent
-          nodeRef={(ref) => this.nodeRef = ref}
-        />
-      )
-  }
-};
-```
-
 ---
