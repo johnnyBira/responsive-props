@@ -80,6 +80,11 @@
       ".*\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "homepage": "https://github.com/jonnyBira/responsive-props#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.4.2",
@@ -117,6 +122,7 @@
     "jsdom": "^14.0.0",
     "npm-run-all": "^4.1.1",
     "prettier": "1.16.4",
+    "pretty-quick": "^1.10.0",
     "prop-types": "^15.6.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
