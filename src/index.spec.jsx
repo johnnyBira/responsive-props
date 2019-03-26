@@ -23,6 +23,15 @@ const theme = {
   }
 };
 
+// Spies
+const testMethodOne = () => jest.fn();
+const testMethodTwo = () => jest.fn();
+
+const mockMixins = {
+  testMethodOne,
+  testMethodTwo
+};
+
 // Compoennt to be wrapped
 const TestWrapped = styled.div`
   background: red;
@@ -36,20 +45,6 @@ describe("withResponsiveProps", () => {
   describe("methods", () => {
     // groupMixinsByBreakpoint
     describe("groupMixinsByBreakpoint", () => {
-      // Spies
-      const testMethodOne = () => jest.fn();
-      const testMethodTwo = () => jest.fn();
-
-      // Wrapped component
-      // const WrappedComponent = withResponsivePropsHoc(TestWrapped, {
-      //   testMethodOne,
-      //   testMethodTwo
-      // });
-      const mockMixins = {
-        testMethodOne,
-        testMethodTwo
-      };
-
       it("retruns a map of mixins groupbed by it's breakpoint", () => {
         const mockProps = {
           testMethodTwo: { xl: 1, xs: 10, s: 30 },
@@ -163,26 +158,31 @@ describe("withResponsiveProps", () => {
       });
 
       it("returns false when the args are not not an object", () => {
-        expect(WrappedComponent.isBreakpointArg([1, 2, 3, 4], breakpoint)).toBe(
-          false
-        );
+        expect(
+          ResponsiveProps.isBreakpointArg([1, 2, 3, 4], breakpoint, mockMixins)
+        ).toBe(false);
       });
       it("returns false when a non breakpoint key is found", () => {
         expect(
-          WrappedComponent.isBreakpointArg(
+          ResponsiveProps.isBreakpointArg(
             {
               s: 1,
               m: 2,
               xl: 4,
               unkonwn: 5
             },
-            breakpoint
+            breakpoint,
+            mockMixins
           )
         ).toBe(false);
       });
       it("returns true for breakpoiont arguments", () => {
         expect(
-          WrappedComponent.isBreakpointArg({ s: 1, m: 2, xl: 4 }, breakpoint)
+          ResponsiveProps.isBreakpointArg(
+            { s: 1, m: 2, xl: 4 },
+            breakpoint,
+            mockMixins
+          )
         ).toBe(true);
       });
     });
