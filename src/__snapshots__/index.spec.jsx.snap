@@ -4,6 +4,12 @@ exports[`withResponsiveProps errors throws an error when an breakpoints are neit
 
 exports[`withResponsiveProps errors throws an error when an invalid breakpoint is passed 1`] = `"Invalid breakpoint 'test', choose one of the defined breakpoints: xs, s, m, l, xl"`;
 
+exports[`withResponsiveProps forwardRef returns the underlaying DOM element of the wrapped styled-comoonent via \`ref\` 1`] = `
+<div
+  class="sc-bdVaJa juxaEn"
+/>
+`;
+
 exports[`withResponsiveProps methods filterMixinsFromProps removes mixins properties from the props object 1`] = `
 Object {
   "breakpoints": Object {

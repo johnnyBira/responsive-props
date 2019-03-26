@@ -289,44 +289,19 @@ describe("withResponsiveProps", () => {
     });
   });
 
-  describe("nodeRef", () => {
+  describe("forwardRef", () => {
     const WrappedComponent = withResponsivePropsHoc(TestWrapped, {});
-    let nodeRef;
-    let innerRef;
-
-    class Test extends Component {
-      render() {
-        return (
-          <ThemeProvider theme={theme}>
-            <WrappedComponent {...this.props} />
-          </ThemeProvider>
-        );
-      }
-    }
-    mount(
-      <Test
-        nodeRef={ref => {
-          nodeRef = ref;
-        }}
-      />
-    );
-
-    // The `nodeRef` prop is keept for legacy reasons. Consider removal at a later release
-    it("returns the underlaying DOM element of the wrapped styled-comoonent via `nodeRef`", () => {
-      expect(nodeRef).toMatchSnapshot();
-    });
+    const forwardRef = React.createRef(null);
 
     mount(
-      <Test
-        innerRef={ref => {
-          innerRef = ref;
-        }}
-      />
+      <ThemeProvider theme={theme}>
+        <WrappedComponent ref={forwardRef} />
+      </ThemeProvider>
     );
 
     // const instanceOne = wrapperOne.find(WrappedComponent).instance();
-    it("returns the underlaying DOM element of the wrapped styled-comoonent via `innerRef`", () => {
-      expect(innerRef).toMatchSnapshot();
+    it("returns the underlaying DOM element of the wrapped styled-comoonent via `ref`", () => {
+      expect(forwardRef.current).toMatchSnapshot();
     });
   });
 
