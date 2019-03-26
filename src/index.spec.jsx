@@ -4,7 +4,7 @@ import styled, { css, withTheme, ThemeProvider } from "styled-components";
 import renderer from "react-test-renderer";
 import styledBreakpoint from "@humblebee/styled-components-breakpoint";
 import shallowWithTheme from "../test/utils/shallowWithTheme";
-import withResponsivePropsHoc from "./index";
+import withResponsivePropsHoc, { ResponsiveProps } from "./index";
 
 const bps = {
   xs: 320,
@@ -41,27 +41,26 @@ describe("withResponsiveProps", () => {
       const testMethodTwo = () => jest.fn();
 
       // Wrapped component
-      const WrappedComponent = withResponsivePropsHoc(TestWrapped, {
+      // const WrappedComponent = withResponsivePropsHoc(TestWrapped, {
+      //   testMethodOne,
+      //   testMethodTwo
+      // });
+      const mockMixins = {
         testMethodOne,
         testMethodTwo
-      });
+      };
 
       it("retruns a map of mixins groupbed by it's breakpoint", () => {
-        // const wrapper = shallow(<WrappedComponent
-        //   testMethodTwo={{ xl: 1, xs: 10, s: 30 }}
-        //   testMethodOne={{ l: 10, s: 10 }}
-        //   breakpoints={breakpoint}
-        // />);
         const mockProps = {
           testMethodTwo: { xl: 1, xs: 10, s: 30 },
           testMethodOne: { l: 10, s: 10 },
           breakpoints: breakpoint
         };
 
-        // const instance = wrapper.instance();
-        const groupedMethods = WrappedComponent.groupMixinsByBreakpoint(
+        const groupedMethods = ResponsiveProps.groupMixinsByBreakpoint(
           mockProps,
-          breakpoint
+          breakpoint,
+          mockMixins
         );
 
         expect(groupedMethods).toMatchSnapshot();
@@ -75,9 +74,10 @@ describe("withResponsiveProps", () => {
         };
 
         // const instance = wrapper.instance();
-        const groupedMethods = WrappedComponent.groupMixinsByBreakpoint(
+        const groupedMethods = ResponsiveProps.groupMixinsByBreakpoint(
           mockProps,
-          breakpoint
+          breakpoint,
+          mockMixins
         );
 
         expect(groupedMethods).toEqual({});
@@ -90,9 +90,10 @@ describe("withResponsiveProps", () => {
           breakpoints: breakpoint
         };
 
-        const groupedMethods = WrappedComponent.groupMixinsByBreakpoint(
+        const groupedMethods = ResponsiveProps.groupMixinsByBreakpoint(
           mockProps,
-          breakpoint
+          breakpoint,
+          mockMixins
         );
         expect(groupedMethods).toMatchSnapshot();
       });
@@ -102,9 +103,10 @@ describe("withResponsiveProps", () => {
           testMethodTwo: undefined
         };
 
-        const groupedMethods = WrappedComponent.groupMixinsByBreakpoint(
+        const groupedMethods = ResponsiveProps.groupMixinsByBreakpoint(
           mockProps,
-          breakpoint
+          breakpoint,
+          mockMixins
         );
         expect(groupedMethods).toMatchSnapshot();
       });
