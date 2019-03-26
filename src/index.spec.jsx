@@ -314,7 +314,7 @@ describe("withResponsiveProps", () => {
 
     it("throws an error when an invalid breakpoint is passed", () => {
       const Wrapper = () =>
-        renderer.create(
+        mount(
           <WrappedComponent testMethodOne={{ test: 10 }} breakpoints={bps} />
         );
       // spyOn suppresses unwanted react error
@@ -324,7 +324,7 @@ describe("withResponsiveProps", () => {
 
     it("throws an error when an breakpoints are neither present in theme or prop", () => {
       const Wrapper = () =>
-        renderer.create(<WrappedComponent testMethodOne={{ test: 10 }} />);
+        mount(<WrappedComponent testMethodOne={{ test: 10 }} />);
       // spyOn suppresses unwanted react error
       spyOn(console, "error");
       expect(Wrapper).toThrowErrorMatchingSnapshot();
