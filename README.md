@@ -11,9 +11,9 @@ Responsive props for [Styled Components](https://www.styled-components.com/).
 
 `responsive-props` is a [HOC](https://reactjs.org/docs/higher-order-components.html) that enhances a [styled component](https://www.styled-components.com/) with a responsive API, to handle styling based on any number of media queries.
 
-This is useful when a styled component needs to have different styles based one or more media queries, in different contexts of an application.
+This is useful when a styled component needs to have different styles based on one or more media queries, in different contexts of an application.
 
-A common example of this is a column in a grid, where a column can have a different widths depending on a matching media query. For that particular use case, `responsive-props` can provide the following API:
+A common example of this is a column in a grid, where a column can have a different widths depending on a matching media query. For this particular use case, `responsive-props` can provide the following API:
 
 ```javascript
 // Possibility to target specific media queries and apply styles accordingly
@@ -40,7 +40,7 @@ npm install responsive-props
 
 ## Basic Example
 
-The default export of `responsive-props` is a [HOC](https://reactjs.org/docs/higher-order-components.html) that takes two parameters. The first parameter is the component to be wrapped/enhanced, and the second parameter is an object containing functions, know as [mixins](https://github.com/styled-components/styled-components/blob/master/docs/tips-and-tricks.md#more-powerful-example), that will generate styles for a given media query.
+The default export of `responsive-props` is a [HOC](https://reactjs.org/docs/higher-order-components.html) that takes two parameters. The first parameter is the component to be wrapped/enhanced, and the second parameter is an object containing functions/mixins, that will generate styles for a given media query.
 
 ```javascript
 import React from "react";
@@ -54,6 +54,7 @@ const StyledComponent = styled.div`
   height: 200px;
   background: palevioletred;
 
+  // Styles returned from mixins targeting specific media queries will be added here
   ${({ responsiveProps }) => responsiveProps}
 `;
 
@@ -92,7 +93,25 @@ The above component `WrappedStyledComponent`, will result in a div in the shaped
 
 Notice how different breakpoint are targeted inside of the `background` prop of `WrappedStyledComponent`. The value for each breakpoint (`#002635`, `#013430` and `#AB1A25`) will be passed as the `bg` parameter of the `background` mixin, and generate corresponding styled for each media query.
 
+```javascript
+<WrappedStyledComponent
+  background={{ s: "#002635", m: "#013440", l: "#AB1A25" }}
+  breakpoints={breakpoints}
+/>
+```
+
 Also notice that the name of the prop `background`, matches that of the key `background` in the object of mixins that is passed to the `withResponsiveProps` HOC.
+
+```javascript
+const WrappedStyledComponent = withResponsiveProps(
+  // Wraps `StyledComponent
+  StyledComponent,
+  {
+    // registers ´background` as a mixin
+    background: background
+  }
+);
+```
 
 <br/>
 
