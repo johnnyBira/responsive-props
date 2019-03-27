@@ -111,6 +111,7 @@ describe("withResponsiveProps", () => {
     describe("invokeBreakpointMixins", () => {
       const bgSpy = jest.fn();
       const paddingSpy = jest.fn();
+      const marginSpy = jest.fn();
 
       const bgMixin = arg => css`
         background: ${arg};
@@ -122,16 +123,23 @@ describe("withResponsiveProps", () => {
         ${paddingSpy(argOne, argTwo)}
       `;
 
+      const margingMixin = argOne => css`
+        margin: ${argOne};
+        ${marginSpy(argOne)}
+      `;
+
       // Wrapped component
       const WrappedComponent = withResponsivePropsHoc(TestWrapped, {
         bgMixin,
-        paddingMixin
+        paddingMixin,
+        margingMixin
       });
 
       const wrapper = mount(
         <WrappedComponent
           bgMixin={{ xl: "red", xs: "green", s: "blue" }}
           paddingMixin={{ xl: [5, 15] }}
+          margingMixin={10}
           breakpoints={bps}
         />
       );
@@ -145,7 +153,7 @@ describe("withResponsiveProps", () => {
       });
 
       it("invokes mixins with multiple paraneters when argument is in the form of an array", () => {
-        expect(paddingSpy).toHaveBeenCalledWith(5, 15);
+        expect(marginSpy).toHaveBeenCalledWith(10);
       });
     });
 

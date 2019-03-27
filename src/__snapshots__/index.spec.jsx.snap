@@ -135,6 +135,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
       "xs": 320,
     }
   }
+  margingMixin={10}
   paddingMixin={
     Object {
       "xl": Array [
@@ -162,9 +163,11 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
       }
     }
     forwardRef={null}
+    margingMixin={10}
     mixins={
       Object {
         "bgMixin": [Function],
+        "margingMixin": [Function],
         "paddingMixin": [Function],
       }
     }
@@ -223,9 +226,11 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
         }
       }
       forwardRef={null}
+      margingMixin={10}
       mixins={
         Object {
           "bgMixin": [Function],
+          "margingMixin": [Function],
           "paddingMixin": [Function],
         }
       }
@@ -281,6 +286,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
         mixins={
           Object {
             "bgMixin": [Function],
+            "margingMixin": [Function],
             "paddingMixin": [Function],
           }
         }
@@ -331,6 +337,17 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
               "
       }
     ",
+            ],
+            Array [
+              "
+        ",
+              "
+          ",
+              [Function],
+              "
+        ",
+              "
+      ",
             ],
           ]
         }
@@ -407,6 +424,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
           mixins={
             Object {
               "bgMixin": [Function],
+              "margingMixin": [Function],
               "paddingMixin": [Function],
             }
           }
@@ -458,6 +476,17 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
       }
     ",
               ],
+              Array [
+                "
+        ",
+                "
+          ",
+                [Function],
+                "
+        ",
+                "
+      ",
+              ],
             ]
           }
           theme={Object {}}
@@ -491,7 +520,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
           }
         >
           <div
-            className="dDzubX"
+            className="fkkouS"
           />
         </StyledComponent>
       </.sc-bdVaJa>
