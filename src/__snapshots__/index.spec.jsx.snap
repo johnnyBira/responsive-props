@@ -10,6 +10,62 @@ exports[`withResponsiveProps forwardRef returns the underlaying DOM element of t
 />
 `;
 
+exports[`withResponsiveProps methods filterMixinsFromProps removes mixins properties from the props object 1`] = `
+Object {
+  "breakpoints": Object {
+    "large": 300,
+    "medium": 200,
+    "small": 100,
+  },
+  "forwardRef": null,
+  "mixins": Object {
+    "mixins": Object {
+      "testMethodOne": [MockFunction],
+      "testMethodTwo": [MockFunction],
+    },
+  },
+  "testPropOne": "Test one",
+  "testPropTwo": "Test two",
+  "theme": Object {
+    "responsiveProps": Object {
+      "breakpoints": Object {
+        "l": 992,
+        "m": 768,
+        "s": 576,
+        "xl": 1200,
+        "xs": 320,
+      },
+    },
+  },
+  "wrappedComponent": Object {
+    "$$typeof": Symbol(react.forward_ref),
+    "attrs": Array [],
+    "componentStyle": ComponentStyle {
+      "componentId": "sc-bdVaJa",
+      "isStatic": false,
+      "lastClassName": "gKDBnu",
+      "rules": Array [
+        "
+  background: red;
+  width: 100px;
+  ",
+        [Function],
+        "
+",
+      ],
+    },
+    "displayName": "styled.div",
+    "foldedComponentIds": Array [],
+    "render": [Function],
+    "styledComponentId": "sc-bdVaJa",
+    "target": "div",
+    "toString": [Function],
+    "warnTooManyClasses": [Function],
+    "withComponent": [Function],
+  },
+}
+`;
+
 exports[`withResponsiveProps methods groupMixinsByBreakpoint Adds mixins under the namespace \`noBreakpoint\` if the props is not an object 1`] = `
 Object {
   "noBreakpoint": Object {

@@ -266,8 +266,9 @@ describe("withResponsiveProps", () => {
           />
         </ThemeProvider>
       );
-      const instance = wrapper.find(WrappedComponent).instance();
-      const fliteredProps = WrappedComponent.filterMixinsFromProps(
+      wrapper.update();
+      const instance = wrapper.find(ResponsiveProps).instance();
+      const fliteredProps = ResponsiveProps.filterMixinsFromProps(
         instance.props,
         Object.keys(mixins)
       );
