@@ -63,14 +63,14 @@
         "branches": 80,
         "functions": 76,
         "lines": 90
-      },
-      "coverageDirectory": "<rootDir>/coverage",
-      "coverageReporters": [
-        "lcov",
-        "html",
-        "text-summary"
-      ]
+      }
     },
+    "coverageDirectory": "<rootDir>/coverage",
+    "coverageReporters": [
+      "lcov",
+      "html",
+      "text-summary"
+    ],
     "moduleDirectories": [
       "node_modules",
       "src"
