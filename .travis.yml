@@ -17,19 +17,12 @@ script:
   - yarn build
 jobs:
   include:
-    # Define the release stage that runs semantic-release
     - stage: release
       node_js: lts/*
-      # Advanced: optionally overwrite your default `script` step to skip the tests
-      # script: skip
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - npm run test:coverage
-          - npx semantic-release
-          - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
-
+      after_success:
+        - npm run test:coverage
+        - npm run semantic-release
+        - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
