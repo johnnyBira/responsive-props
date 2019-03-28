@@ -1,10 +1,13 @@
 {
   "presets": [
-    "env",
-    "stage-2",
-    "react"
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "corejs": "3",
+        "useBuiltIns": "entry"
+      }
+    ]
   ],
-  "plugins": [
-    "transform-export-extensions"
-  ]
+  "plugins": ["@babel/plugin-proposal-class-properties"]
 }

@@ -13,3 +13,9 @@ lib
 
 # Ignore test coverage folder
 coverage
+
+# Ignore storybook static build
+storybook-static
+
+# Ignore package.json lock file
+package-lock.json

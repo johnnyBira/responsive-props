@@ -1,6 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`withResponsiveProps errors throws an error when an breakpoints are neither present in theme or prop 1`] = `"Breakpoints need to be provided either through the prop \`breakpoints\`, or be present under the theme namesapce \`responsiveProps.breakpoints\` in a \`theme\` of a ThemeProvider: https://www.npmjs.com/package/responsive-props#register-breakpoints"`;
+
 exports[`withResponsiveProps errors throws an error when an invalid breakpoint is passed 1`] = `"Invalid breakpoint 'test', choose one of the defined breakpoints: xs, s, m, l, xl"`;
+
+exports[`withResponsiveProps forwardRef returns the underlaying DOM element of the wrapped styled-comoonent via \`ref\` 1`] = `
+<div
+  class="sc-bdVaJa juxaEn"
+/>
+`;
+
+exports[`withResponsiveProps methods filterMixinsFromProps removes mixins properties from the props object 1`] = `
+Object {
+  "breakpoints": Object {
+    "large": 300,
+    "medium": 200,
+    "small": 100,
+  },
+  "forwardRef": null,
+  "mixins": Object {
+    "mixins": Object {
+      "testMethodOne": [MockFunction],
+      "testMethodTwo": [MockFunction],
+    },
+  },
+  "testPropOne": "Test one",
+  "testPropTwo": "Test two",
+  "theme": Object {
+    "responsiveProps": Object {
+      "breakpoints": Object {
+        "l": 992,
+        "m": 768,
+        "s": 576,
+        "xl": 1200,
+        "xs": 320,
+      },
+    },
+  },
+  "wrappedComponent": Object {
+    "$$typeof": Symbol(react.forward_ref),
+    "attrs": Array [],
+    "componentStyle": ComponentStyle {
+      "componentId": "sc-bdVaJa",
+      "isStatic": false,
+      "lastClassName": "gKDBnu",
+      "rules": Array [
+        "
+  background: red;
+  width: 100px;
+  ",
+        [Function],
+        "
+",
+      ],
+    },
+    "displayName": "styled.div",
+    "foldedComponentIds": Array [],
+    "render": [Function],
+    "styledComponentId": "sc-bdVaJa",
+    "target": "div",
+    "toString": [Function],
+    "warnTooManyClasses": [Function],
+    "withComponent": [Function],
+  },
+}
+`;
 
 exports[`withResponsiveProps methods groupMixinsByBreakpoint Adds mixins under the namespace \`noBreakpoint\` if the props is not an object 1`] = `
 Object {
@@ -54,31 +118,7 @@ Array [
 `;
 
 exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 1`] = `
-.c0 {
-  background: red;
-  width: 100px;
-}
-
-@media only screen and (min-width:320px) {
-  .c0 {
-    background: green;
-  }
-}
-
-@media only screen and (min-width:576px) {
-  .c0 {
-    background: blue;
-  }
-}
-
-@media only screen and (min-width:1200px) {
-  .c0 {
-    background: red;
-    padding: 5;
-  }
-}
-
-<WithTheme(responsiveProps)
+<[object Object]
   bgMixin={
     Object {
       "s": "blue",
@@ -95,6 +135,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
       "xs": 320,
     }
   }
+  margingMixin={10}
   paddingMixin={
     Object {
       "xl": Array [
@@ -104,7 +145,7 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
     }
   }
 >
-  <responsiveProps
+  <[object Object]
     bgMixin={
       Object {
         "s": "blue",
@@ -121,6 +162,15 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
         "xs": 320,
       }
     }
+    forwardRef={null}
+    margingMixin={10}
+    mixins={
+      Object {
+        "bgMixin": [Function],
+        "margingMixin": [Function],
+        "paddingMixin": [Function],
+      }
+    }
     paddingMixin={
       Object {
         "xl": Array [
@@ -129,15 +179,36 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
         ],
       }
     }
-    theme={
+    wrappedComponent={
       Object {
-        "responsiveProps": Object {
-          "breakpoint": undefined,
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "lastClassName": "juxaEn",
+          "rules": Array [
+            "
+  background: red;
+  width: 100px;
+  ",
+            [Function],
+            "
+",
+          ],
         },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
       }
     }
   >
-    <styled.div
+    <ResponsiveProps
       bgMixin={
         Object {
           "s": "blue",
@@ -154,6 +225,15 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
           "xs": 320,
         }
       }
+      forwardRef={null}
+      margingMixin={10}
+      mixins={
+        Object {
+          "bgMixin": [Function],
+          "margingMixin": [Function],
+          "paddingMixin": [Function],
+        }
+      }
       paddingMixin={
         Object {
           "xl": Array [
@@ -162,70 +242,291 @@ exports[`withResponsiveProps methods invokeBreakpointMixins renders as expected 
           ],
         }
       }
-      responsiveProps={
-        Array [
-          Array [
-            "
-      ",
-            "@media only screen and (min-width: 320px)",
-            "{
-        ",
-            "
-            ",
-            [Function],
-            "
-          ",
-            "
-      }
-    ",
-          ],
-          Array [
-            "
-      ",
-            "@media only screen and (min-width: 576px)",
-            "{
-        ",
-            "
-            ",
-            [Function],
-            "
-          ",
-            "
-      }
-    ",
-          ],
-          Array [
-            "
-      ",
-            "@media only screen and (min-width: 1200px)",
-            "{
-        ",
-            "
-            ",
-            [Function],
-            [Function],
-            "
-          ",
-            "
-      }
-    ",
-          ],
-        ]
-      }
-      theme={
+      theme={Object {}}
+      wrappedComponent={
         Object {
-          "responsiveProps": Object {
-            "breakpoint": undefined,
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bdVaJa",
+            "isStatic": false,
+            "lastClassName": "juxaEn",
+            "rules": Array [
+              "
+  background: red;
+  width: 100px;
+  ",
+              [Function],
+              "
+",
+            ],
           },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bdVaJa",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
         }
       }
     >
-      <div
-        className="c0"
-      />
-    </styled.div>
-  </responsiveProps>
-</WithTheme(responsiveProps)>
+      <.sc-bdVaJa
+        breakpoints={
+          Object {
+            "l": 992,
+            "m": 768,
+            "s": 576,
+            "xl": 1200,
+            "xs": 320,
+          }
+        }
+        forwardRef={null}
+        mixins={
+          Object {
+            "bgMixin": [Function],
+            "margingMixin": [Function],
+            "paddingMixin": [Function],
+          }
+        }
+        responsiveProps={
+          Array [
+            Array [
+              "
+      ",
+              "@media only screen and (min-width: 320px)",
+              "{
+        ",
+              "
+          ",
+              [Function],
+              "
+        ",
+              "
+      }
+    ",
+            ],
+            Array [
+              "
+      ",
+              "@media only screen and (min-width: 576px)",
+              "{
+        ",
+              "
+          ",
+              [Function],
+              "
+        ",
+              "
+      }
+    ",
+            ],
+            Array [
+              "
+      ",
+              "@media only screen and (min-width: 1200px)",
+              "{
+        ",
+              "
+          ",
+              [Function],
+              [Function],
+              "
+        ",
+              "
+      }
+    ",
+            ],
+            Array [
+              "
+        ",
+              "
+          ",
+              [Function],
+              "
+        ",
+              "
+      ",
+            ],
+          ]
+        }
+        theme={Object {}}
+        wrappedComponent={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [],
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-bdVaJa",
+              "isStatic": false,
+              "lastClassName": "juxaEn",
+              "rules": Array [
+                "
+  background: red;
+  width: 100px;
+  ",
+                [Function],
+                "
+",
+              ],
+            },
+            "displayName": "styled.div",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "sc-bdVaJa",
+            "target": "div",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          }
+        }
+      >
+        <StyledComponent
+          breakpoints={
+            Object {
+              "l": 992,
+              "m": 768,
+              "s": 576,
+              "xl": 1200,
+              "xs": 320,
+            }
+          }
+          forwardRef={null}
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-bdVaJa",
+                "isStatic": false,
+                "lastClassName": "juxaEn",
+                "rules": Array [
+                  "
+  background: red;
+  width: 100px;
+  ",
+                  [Function],
+                  "
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-bdVaJa",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          mixins={
+            Object {
+              "bgMixin": [Function],
+              "margingMixin": [Function],
+              "paddingMixin": [Function],
+            }
+          }
+          responsiveProps={
+            Array [
+              Array [
+                "
+      ",
+                "@media only screen and (min-width: 320px)",
+                "{
+        ",
+                "
+          ",
+                [Function],
+                "
+        ",
+                "
+      }
+    ",
+              ],
+              Array [
+                "
+      ",
+                "@media only screen and (min-width: 576px)",
+                "{
+        ",
+                "
+          ",
+                [Function],
+                "
+        ",
+                "
+      }
+    ",
+              ],
+              Array [
+                "
+      ",
+                "@media only screen and (min-width: 1200px)",
+                "{
+        ",
+                "
+          ",
+                [Function],
+                [Function],
+                "
+        ",
+                "
+      }
+    ",
+              ],
+              Array [
+                "
+        ",
+                "
+          ",
+                [Function],
+                "
+        ",
+                "
+      ",
+              ],
+            ]
+          }
+          theme={Object {}}
+          wrappedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-bdVaJa",
+                "isStatic": false,
+                "lastClassName": "juxaEn",
+                "rules": Array [
+                  "
+  background: red;
+  width: 100px;
+  ",
+                  [Function],
+                  "
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-bdVaJa",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+        >
+          <div
+            className="fkkouS"
+          />
+        </StyledComponent>
+      </.sc-bdVaJa>
+    </ResponsiveProps>
+  </[object Object]>
+</[object Object]>
 `;
 
 exports[`withResponsiveProps methods withTheme overrides the breakpoint utils provided by theme 1`] = `
