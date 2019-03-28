@@ -1,21 +1,19 @@
 [![codecov](https://codecov.io/gh/johnnyBira/responsive-props/branch/develop/graph/badge.svg)](https://codecov.io/gh/johnnyBira/responsive-props)
 ![Travis](https://img.shields.io/travis/johnnyBira/responsive-props.svg)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Greenkeeper badge](https://badges.greenkeeper.io/johnnyBira/responsive-props.svg)](https://greenkeeper.io/)
 
 ## Responsive Props 💅
+
 Responsive props for [Styled Components](https://www.styled-components.com/).
 
 ![alt text](https://raw.githubusercontent.com/johnnyBira/responsive-props/master/docs/images/demoExample.gif "Demo Exmaple")
 
-`responsive-props` enhances a [styled component](https://www.styled-components.com/) with a responsive API to handle styling based on any number of media queries.
+`responsive-props` is a [HOC](https://reactjs.org/docs/higher-order-components.html) that enhances a [styled component](https://www.styled-components.com/) with a responsive API, to handle styling based on any number of media queries.
 
-This is useful when a styled component needs to have different styles based one of more media queries, in different contexts of an application.
+This is useful when a styled component needs to have different styles based on one or more media queries, in different contexts of an application.
 
-A common example of this is a column in a grid, where a column can have a different widths depending on a matching media query.
-
-`responsive-props` is a [HOC](https://reactjs.org/docs/higher-order-components.html) that enhances a component with the following API:
+A common example of this is a column in a grid, where a column can have a different widths depending on a matching media query. For this particular use case, `responsive-props` can provide the following API:
 
 ```javascript
 // Possibility to target specific media queries and apply styles accordingly
@@ -28,6 +26,8 @@ A common example of this is a column in a grid, where a column can have a differ
 </Row>
 ```
 
+The above example is take from the [Styled Flexbox Grid](https://github.com/johnnyBira/styled-flexbox-grid) library, which uses `responsive-props`.
+
 #### Installation
 
 ```sh
@@ -35,17 +35,18 @@ yarn add responsive-props
 # or
 npm install responsive-props
 ```
+
 ---
 
 ## Basic Example
 
-The default export of `responsive-props` is a [HOC](https://reactjs.org/docs/higher-order-components.html) that takes two parameters. The first parameter is the component to be wrapped/enhanced, and the second parameter is an object containing functions, know as [mixins](https://github.com/styled-components/styled-components/blob/master/docs/tips-and-tricks.md#more-powerful-example), that will generate styles for a given media query.
+The default export of `responsive-props` is a [HOC](https://reactjs.org/docs/higher-order-components.html) that takes two parameters. The first parameter is the component to be wrapped/enhanced, and the second parameter is an object containing functions/mixins, that will generate styles for a given media query.
 
 ```javascript
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
 // responsive-props HOC
-import withResponsiveProps from 'responsive-props';
+import withResponsiveProps from "responsive-props";
 
 // Create a styled-components
 const StyledComponent = styled.div`
@@ -53,6 +54,7 @@ const StyledComponent = styled.div`
   height: 200px;
   background: palevioletred;
 
+  // Styles returned from mixins targeting specific media queries will be added here
   ${({ responsiveProps }) => responsiveProps}
 `;
 
@@ -64,10 +66,12 @@ const background = bg => css`
 // Wrap `StyledComponent with the `responsive-props` HOC
 const WrappedStyledComponent = withResponsiveProps(
   // Wraps `StyledComponent
-  StyledComponent, {
+  StyledComponent,
+  {
     // registers ´background` as a mixin
-    background: background,
-  });
+    background: background
+  }
+);
 
 // Define the breakpoints, passed to `WrappedStyledComponent` `breakpoints` prop bellow
 const breakpoints = { xs: 320, s: 576, m: 768, l: 992, xl: 1200 };
@@ -75,7 +79,7 @@ const breakpoints = { xs: 320, s: 576, m: 768, l: 992, xl: 1200 };
 // WrappedStyledComponent can now be used in the following way
 const Example = () => (
   <WrappedStyledComponent
-    background={{ s: '#002635', m: '#013440', l: '#AB1A25' }}
+    background={{ s: "#002635", m: "#013440", l: "#AB1A25" }}
     breakpoints={breakpoints}
   />
 );
@@ -87,17 +91,35 @@ The above component `WrappedStyledComponent`, will result in a div in the shaped
 
 ![alt text](https://raw.githubusercontent.com/johnnyBira/responsive-props/master/docs/images/basicExample.gif "Basic Exmaple")
 
-Notice how different breakpoint are targeted inside of the `background` prop of `WrappedStyledComponent`. The value for each breakpoint ('#002635', '#013440' and '#AB1A25') will be passed as the `bg` parameter of the `background` mixin, and generate corresponding styled for each media query.
+Notice how different breakpoint are targeted inside of the `background` prop of `WrappedStyledComponent`. The value for each breakpoint (`#002635`, `#013430` and `#AB1A25`) will be passed as the `bg` parameter of the `background` mixin, and generate corresponding styled for each media query.
 
-Also notice that the name of the prop `background`, matches that of the key `background` in the object of mixins we passed to the `withResponsiveProps` HOC.
+```javascript
+<WrappedStyledComponent
+  background={{ s: "#002635", m: "#013440", l: "#AB1A25" }}
+  breakpoints={breakpoints}
+/>
+```
+
+Also notice that the name of the prop `background`, matches that of the key `background` in the object of mixins that is passed to the `withResponsiveProps` HOC.
+
+```javascript
+const WrappedStyledComponent = withResponsiveProps(
+  // Wraps `StyledComponent
+  StyledComponent,
+  {
+    // registers ´background` as a mixin
+    background: background
+  }
+);
+```
 
 <br/>
 
-> Important: The line `${({ responsiveProps }) => responsiveProps}` is where styles of each media queries will be inserted. Without this, no media queries will be applied to the styled component.
+> **Important:** The line `${({ responsiveProps }) => responsiveProps}` is where styles of each media queries will be inserted. Without this no media queries will be applied to the styled component.
 
 <br/>
 
-It is possible to register any number of breakpoints with a naming convention of your choice. In the above examples we used this naming convention:  `xs`, `s`, `m`, `l`, `xl`. However if you for example prefer the convention used by Twitter Bootstrap (`xs`, `sm`, `md`, `lg`, `xl`) you could configure the breakpoints like this.
+It is possible to register any number of breakpoints with a naming convention of your choice. In the above examples we used the naming convention: `xs`, `s`, `m`, `l`, `xl`. However if you for example prefer the convention used by Twitter Bootstrap (`xs`, `sm`, `md`, `lg`, `xl`) you could configure the breakpoints like this:
 
 ```javascript
 // Define the breakpoints, passed to `WrappedStyledComponent` `breakpoints` prop bellow
@@ -106,7 +128,7 @@ const breakpoints = { xs: 320, sm: 576, md: 768, lg: 992, xl: 1200 };
 // WrappedStyledComponent can now be used in the following way
 const Example = () => (
   <WrappedStyledComponent
-    background={{ sm: 'papayawhip', md: 'palevioletred', lg: '#AB1A25' }}
+    background={{ sm: "papayawhip", md: "palevioletred", lg: "#AB1A25" }}
     breakpoints={breakpoints}
   />
 );
@@ -114,9 +136,9 @@ const Example = () => (
 
 ## Register breakpoints
 
-There are two ways to register the breakpoints for a components enhanced by `responsive-props`.
+There are two ways to register the breakpoints for components enhanced by `responsive-props`.
 
-The first (which has already been demonstrated in the  [Basic Example](#basic-example)  is to pass to pass an object of breakpoints to the enhanced component via the `breakpoints` prop. The other more convenient way is to register the breakpoints inside a theme of the `styled-components` [ThemeProvider](https://www.styled-components.com/docs/advanced#theming).
+The first (which has already been demonstrated in the [Basic Example](#basic-example) is to pass to pass an object of breakpoints to the enhanced component via the `breakpoints` prop. The other more convenient way is to register the breakpoints inside a theme of the `styled-components` [ThemeProvider](https://www.styled-components.com/docs/advanced#theming).
 
 ### Via `<ThemeProvider />` (recommended)
 
@@ -146,7 +168,8 @@ const Example = () => (
 );
 
 ```
-Of course this is a contrived example where the benefit of theme isn't very clear. Normally the `ThemeProvider` would be placed somewhere higher up the component three, where any component inside the ThemeProvider can omit the breakpoints prop.
+
+Of course this is a contrived example where the benefit of theme isn't very clear. Normally the `ThemeProvider` would be placed somewhere higher up the component three, where any component inside the `ThemeProvider` can omit the `breakpoints` prop.
 
 ### Via the `breakpoints` prop
 
@@ -158,70 +181,76 @@ If your application doesn't make use of `ThemeProvider` (or you would like to ov
 
 ## API
 
-### Responsive props (media queries)
+The API of a component enhanced by `responsive-props` is centered around the format of the value, that is passed to the props of the component. They can either be in the form of an object to [target specific media queries](#target-specific-media-queries) or a [single value](#single-value-without-media-queries) to seamlessly act as regular [adaptational props](https://www.styled-components.com/docs/basics#adapting-based-on-props).
 
-  To target a specific breakpoint an object of breakpoints is passed as the prop. The keys (`s`, `m`, and `l`) are the breakpoints to target. The values ('#002635', '#013440', '#AB1A25') are parameter that will be passed to a mixin/function namned `background`, responsible for generating styles for the specified breakpoints.
+In [React](https://reactjs.org/) terms the pattern implemented by `responsive-props` is known as Props Proxy.
+
+### Target specific media queries
+
+To target a specific breakpoint an object of breakpoints is passed as the value of the prop. The keys of the of object should be present in the [registered breakpoints](#register-breakpoints) in order to work.
+
+Bellow the keys (`s`, `m`, and `l`) are the breakpoints to target. The values (`#002635`, `#013440` and `#AB1A25`) are parameter that will be passed to a mixin/function namned `background`, responsible for generating styles for the specified breakpoints.
 
 ```javascript
-<WrappedStyledComponent background={{ s: '#002635', m: '#013440', l: '#AB1A25' }} />
+<WrappedStyledComponent
+  background={{ s: "#002635", m: "#013440", l: "#AB1A25" }}
+/>
 ```
+
+This will result in different background colors (`#002635`, `#013440` and `#AB1A25`) for each breakpoint (`s`, `m`, and `l`).
 
 ### Single value (without media queries)
 
-If a style should be applied without media queries (i.e. independent of the bowser/viewport width) it is possible to only pass a single value, instead of an object of breakpoints.
+If a style should be applied without media queries (i.e. independent of the bowser/viewport width) it is possible to only pass a single value to the same prop, instead of an object of breakpoints.
 
 ```javascript
 <WrappedStyledComponent background="#002635" />
 ```
+
 This will result in a background color of `#002635` for all viewports.
 
 ### Mixins with multiple parameters
 
-If a mixin accept more than one parameter it is possible to pass the parameter for a give breakpoint in the form on an array. In the example bellow the `padding` mixin takes two parameters for top and bottom padding.
+If a mixin accept more than one parameter it is possible to pass the parameter for a given breakpoint in the form on an array. In the example bellow the `verticalPadding` mixin takes two parameters, the first for top padding and the second for bottom padding.
 
 ```javascript
-<WrappedStyledComponent padding={{ s: ['2rem', '1rem'], m: ['3rem', '2rem'] }}
+<WrappedStyledComponent verticalPadding={{ s: ['2rem', '1rem'], m: ['3rem', '2rem'] }}
 ```
 
-More detailed snippet of the above:
+More detailed snippet of the above example:
+
 ```javascript
 // Define the mixin `background`
-const padding = (paddingBottom, paddingTop = 0) => css`
+const verticalPadding = (paddingBottom, paddingTop = 0) => css`
   padding: ${paddingTop} 0 ${paddingBottom} 0;
 `;
 
 // Wrap `StyledComponent with the `responsive-props` HOC
 const WrappedStyledComponent = withResponsiveProps(
   // Wraps `StyledComponent`
-  StyledComponent, {
-    // registers padding` as a mixin
-    padding: padding,
-  });
+  StyledComponent,
+  {
+    // registers `verticalPadding` as a mixin
+    verticalPadding: verticalPadding
+  }
+);
 
 // WrappedStyledComponent can now be used in the following way
 const Example = () => (
-  <WrappedStyledComponent padding={{ s: ['2rem', '1rem'], m: ['3rem', '2rem'] }}
+  <WrappedStyledComponent
+    verticalPadding={{ s: ["2rem", "1rem"], m: ["3rem", "2rem"] }}
   />
 );
 ```
 
-### Ref / innerRef
+---
 
-To get the underlaying DOM element you pass a function to the `nodeRef` prop. The returned node is the equivalent of the `innerRef` prop of `styled-componets`.
-A future release might fix this and replace the `nodeRef` prop with `innerRef`.
+### v2 migration instructions
 
-Only works for stateful components.
+`innerRef` and `nodeRef` is deprecated as of `responsive-props` v2. Instead V2 implements the new `React.forwardRef` API and expects the use of `ref` prop to get the underlaying DOM element.
 
-```javascript
-class Example extends React.Component {
-  render() {
-    return (
-        <WrappedStyledComponent
-          nodeRef={(ref) => this.nodeRef = ref}
-        />
-      )
-  }
-};
-```
+`responsive-props` v2 is compatible with `styled-components: ^4.0.0` and `react ^16.3.0`. Make sure to match these dependencies or consider using an older version.
+
+If you wish to use `styled-components` v3 use version `1.2.1` of `responsive-props`. Note that if you're using later versions of `React` this may throw warnings, updating is recommended.
 
 ---
