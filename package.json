@@ -156,6 +156,6 @@
   },
   "dependencies": {
     "@humblebee/styled-components-breakpoint": "^2.1.3",
-    "isobject": "^3.0.1"
+    "isobject": "^4.0.0"
   }
 }
