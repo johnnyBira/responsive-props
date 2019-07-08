@@ -88,7 +88,7 @@
   "homepage": "https://github.com/jonnyBira/responsive-props#readme",
   "devDependencies": {
     "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.4.0",
+    "@babel/core": "^7.5.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
