@@ -213,15 +213,17 @@ export class ResponsiveProps extends Component {
 /** HOC props proxy for dealing with responsive props. */
 /* Enhances a styled component with the props responsiveProps
  */
+const ThemedResponsiveProps = withTheme(ResponsiveProps);
+
 const withResponsiveProps = (WrappedComponent, mixins = {}) => {
-  return React.forwardRef((props, ref) =>
-    React.createElement(withTheme(ResponsiveProps), {
-      forwardRef: ref,
-      wrappedComponent: WrappedComponent,
-      mixins,
-      ...props
-    })
-  );
+  return React.forwardRef((props, ref) => (
+    <ThemedResponsiveProps
+      forwardRef={ref}
+      wrappedComponent={WrappedComponent}
+      mixins={mixins}
+      {...props}
+    />
+  ));
 };
 
 withResponsiveProps.displayName = "responsiveProps";

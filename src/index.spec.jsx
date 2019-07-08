@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { act } from "react-dom/test-utils";
 import { mount, shallow } from "enzyme";
 import styled, { css, withTheme, ThemeProvider } from "styled-components";
 import renderer from "react-test-renderer";
@@ -295,6 +296,75 @@ describe("withResponsiveProps", () => {
         expect(instance.props).toHaveProperty("testPropOne");
         expect(instance.props).toHaveProperty("testPropTwo");
       });
+    });
+  });
+
+  describe.only("Component wrapped withResponsiveProps mounts only once", () => {
+    // This test uses fake timers
+    jest.useFakeTimers();
+    /* eslint-disable-next-line */
+    const Counter = ({ responsiveProps }) => {
+      const [count, setCount] = React.useState(0);
+
+      React.useEffect(() => {
+        const timer = setTimeout(() => setCount(1), 4);
+        return () => clearTimeout(timer);
+      });
+
+      return (
+        <TestWrapped responsiveProps={responsiveProps}>{count}</TestWrapped>
+      );
+    };
+
+    const testMethod = jest.fn();
+
+    const WrappedCounter = withResponsivePropsHoc(Counter, {
+      testMethod
+    });
+
+    // hook to force a render of this component
+    const useForceUpdate = () => React.useReducer(state => !state, false)[1];
+    /* eslint-disable-next-line */
+    const Parent = () => {
+      const forceUpdate = useForceUpdate();
+      return (
+        <>
+          <button type="button" onClick={forceUpdate}>
+            toggle
+          </button>
+          <WrappedCounter />
+        </>
+      );
+    };
+
+    const wrapper = mount(
+      <ThemeProvider theme={theme}>
+        <Parent />
+      </ThemeProvider>
+    );
+
+    it("Parent has a toggle button", () => {
+      expect(wrapper.find("button").text()).toEqual("toggle");
+    });
+
+    it("Counter mounts with count 0", () => {
+      expect(wrapper.find("div").text()).toEqual("0");
+    });
+
+    it("Counter updates count to 1 when timer is triggered", () => {
+      act(() => {
+        jest.runAllTimers();
+      });
+      wrapper.update();
+      expect(wrapper.find("div").text()).toEqual("1");
+    });
+
+    it("Counter keeps the count at one when clicking the toggle button", () => {
+      act(() => {
+        wrapper.find("button").simulate("click");
+      });
+      wrapper.update();
+      expect(wrapper.find("div").text()).toEqual("1");
     });
   });
 
