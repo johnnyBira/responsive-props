@@ -107,7 +107,7 @@
     "core-js": "3",
     "cz-conventional-changelog": "^2.0.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-adapter-react-16": "^1.15.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "^4.1.0",
