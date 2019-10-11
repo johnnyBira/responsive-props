@@ -135,7 +135,7 @@
     "semantic-release-cli": "^5.0.0",
     "styled-components": "^4.2.0",
     "travis-deploy-once": "^5.0.11",
-    "webpack": "^4.29.6",
+    "webpack": "^4.41.1",
     "webpack-cli": "^3.3.0"
   },
   "peerDependencies": {
