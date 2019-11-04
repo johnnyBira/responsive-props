@@ -122,7 +122,7 @@
     "jest-cli": "^24.5.0",
     "jest-enzyme": "^7.0.2",
     "jest-styled-components": "next",
-    "jsdom": "^15.1.1",
+    "jsdom": "^15.2.1",
     "npm-run-all": "^4.1.1",
     "prettier": "1.17.0",
     "pretty-quick": "^1.10.0",
