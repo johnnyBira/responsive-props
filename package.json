@@ -98,7 +98,7 @@
     "@storybook/addon-backgrounds": "^5.3.9",
     "@storybook/addon-info": "^5.3.9",
     "@storybook/addon-links": "^5.3.9",
-    "@storybook/addon-options": "^5.0.4",
+    "@storybook/addon-options": "^5.3.9",
     "@storybook/react": "^5.0.4",
     "babel-loader": "^8.0.5",
     "codecov": "^3.2.0",
