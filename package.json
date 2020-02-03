@@ -99,7 +99,7 @@
     "@storybook/addon-info": "^5.3.10",
     "@storybook/addon-links": "^5.3.10",
     "@storybook/addon-options": "^5.3.10",
-    "@storybook/react": "^5.0.4",
+    "@storybook/react": "^5.3.10",
     "babel-loader": "^8.0.5",
     "codecov": "^3.2.0",
     "commitizen": "^3.0.7",
