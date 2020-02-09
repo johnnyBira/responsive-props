@@ -130,7 +130,7 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-test-renderer": "^16.2.0",
-    "rimraf": "^2.6.2",
+    "rimraf": "^3.0.2",
     "semantic-release": "^15.13.3",
     "semantic-release-cli": "^5.0.0",
     "styled-components": "^4.2.0",
