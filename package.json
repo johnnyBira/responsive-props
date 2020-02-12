@@ -96,7 +96,7 @@
     "@commitlint/cli": "^8.0.0",
     "@storybook/addon-actions": "^5.3.13",
     "@storybook/addon-backgrounds": "^5.3.13",
-    "@storybook/addon-info": "^5.0.4",
+    "@storybook/addon-info": "^5.3.13",
     "@storybook/addon-links": "^5.0.4",
     "@storybook/addon-options": "^5.0.4",
     "@storybook/react": "^5.0.4",
