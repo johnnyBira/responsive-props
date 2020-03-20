@@ -100,7 +100,7 @@
     "@storybook/addon-links": "^5.0.4",
     "@storybook/addon-options": "^5.0.4",
     "@storybook/react": "^5.0.4",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.1.0",
     "codecov": "^3.2.0",
     "commitizen": "^3.0.7",
     "commitlint": "^8.0.0",
